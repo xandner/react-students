@@ -13,6 +13,9 @@ const Student = (props) => {
             <input type="text" value={props.phone} onChange={props.changePhone}></input>
             <label>ایمیل</label>
             <input type="email" value={props.email} onChange={props.changeEmail}></input>
+            <label style={{ background: "red" }} onClick={props.delete}>
+                حذف
+            </label>
             <hr />
         </div>
 

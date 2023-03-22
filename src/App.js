@@ -57,6 +57,11 @@ function App() {
       console.log(error)
     }
   }
+  const deleteStudent=(index)=>{
+    const newStudents=[...students]
+    newStudents.splice(index,1)
+    setStudents(newStudents)
+  }
   return (
     <div className="App">
       <Students
@@ -65,6 +70,7 @@ function App() {
         changeEmail={emailChangeHandler}
         changePhone={phoneChangeHandler}
         changeClassNumber={classNumberChangeHandler}
+        delete={deleteStudent}
       />
     </div>
   );
