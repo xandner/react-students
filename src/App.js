@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Students from './components/students/students';
+import Button from './components/UI/button/button';
 
 function App() {
   const [students, setStudents] = useState([
@@ -9,6 +10,7 @@ function App() {
     { id: 2, name: "taghi", classNumber: 201, phone: "9014226358", email: "email.com" },
     { id: 3, name: "akbar", classNumber: 220, phone: "9014229358", email: "email.com" },
   ])
+  const [toggle,setToggle]=useState(false)
   const nameChangeHandler = (event, id) => {
     const studentIndex = students.findIndex(student => student.id === id)
     const student = { ...students[studentIndex] }
@@ -62,8 +64,14 @@ function App() {
     newStudents.splice(index,1)
     setStudents(newStudents)
   }
+  const toggleHandler=()=>{
+    setToggle(!toggle)
+  }
   return (
     <div className="App">
+      <Button btnType={'success'} clicked={toggleHandler}>
+        تغییر وضعیت نمایش
+      </Button>
       <Students
         studentsList={students}
         nameChange={nameChangeHandler}
@@ -71,6 +79,7 @@ function App() {
         changePhone={phoneChangeHandler}
         changeClassNumber={classNumberChangeHandler}
         delete={deleteStudent}
+        toggle={toggle}
       />
     </div>
   );
