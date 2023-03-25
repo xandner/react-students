@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Students from './components/students/students';
 import Button from './components/UI/button/button';
+import "./App.css"
 
 function App() {
   const [students, setStudents] = useState([
@@ -10,7 +11,21 @@ function App() {
     { id: 2, name: "taghi", classNumber: 201, phone: "9014226358", email: "email.com" },
     { id: 3, name: "akbar", classNumber: 220, phone: "9014229358", email: "email.com" },
   ])
+  const [arrayHolder,setArrayHolder]=useState([])
   const [toggle,setToggle]=useState(false)
+  const [searchBarValue,setSearchBarValue] = useState("")
+  useEffect(()=>{
+    setArrayHolder(students)
+  },[])
+  const searchFilterFunction=(event)=>{
+    const searched=arrayHolder.filter((item)=>{
+      return item.name.toUpperCase().indexOf(event.target.value.toUpperCase())>-1
+    })
+    console.log(event.target.value)
+    console.log(searched)
+    setStudents(searched)
+    setSearchBarValue(event.target.value)
+  }
   const nameChangeHandler = (event, id) => {
     const studentIndex = students.findIndex(student => student.id === id)
     const student = { ...students[studentIndex] }
@@ -69,6 +84,8 @@ function App() {
   }
   return (
     <div className="App">
+      <input type={"text"} value={searchBarValue} onChange={searchFilterFunction}></input>
+      <br/>
       <Button btnType={'success'} clicked={toggleHandler}>
         تغییر وضعیت نمایش
       </Button>
