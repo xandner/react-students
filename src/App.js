@@ -39,6 +39,10 @@ function App() {
   const [arrayHolder, setArrayHolder] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState("");
+  const [studentNewName, stStudentNewName] = useState("");
+  const [studentEmail, setStudentEmail] = useState("");
+  const [studentClass, setStudentClass] = useState("");
+  const [studentPhone, setStudentPhone] = useState("");
   useEffect(() => {
     setArrayHolder(students);
   }, []);
@@ -107,9 +111,46 @@ function App() {
   const toggleHandler = () => {
     setToggle(!toggle);
   };
+  const studentNameHandler = (event) => {
+    stStudentNewName(event.target.value);
+  };
+  const studentEmailHandler = (event) => {
+    setStudentEmail(event.target.value);
+  };
+  const studentClassHandler = (event) => {
+    setStudentClass(event.target.value);
+  };
+  const studentPhoneHandler = (event) => {
+    setStudentPhone(event.target.value);
+  };
+  const addStudent = () => {
+    const newStudentsState = [...students];
+    newStudentsState.push({
+      id: students.length,
+      name: studentNewName,
+      classNumber: studentClass,
+      phone: studentPhone,
+      email: studentEmail,
+    });
+    setStudents(newStudentsState);
+    stStudentNewName("");
+    setStudentClass("");
+    setStudentEmail("");
+    setStudentPhone("");
+  };
   return (
     <div className="App">
-      <NewStudent />
+      <NewStudent
+        studentName={studentNewName}
+        studentEmail={studentEmail}
+        studentClass={studentClass}
+        studentPhone={studentPhone}
+        studentNameHandler={studentNameHandler}
+        studentEmailHandler={studentEmailHandler}
+        studentClassHandler={studentClassHandler}
+        studentPhoneHandler={studentPhoneHandler}
+        addStudent={addStudent}
+      />
       <input
         type={"text"}
         value={searchBarValue}
