@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Student from "./student/student";
 import "./student/students.css";
+import PropTypes from "prop-types";
 
 const Students = (props) => {
   useEffect(() => {
@@ -32,4 +33,13 @@ const Students = (props) => {
     return studentsList;
   });
 };
-export default Students;
+export default React.memo(Students);
+Students.prototypes = {
+  studentsList: PropTypes.func.isRequired,
+  nameChange: PropTypes.func.isRequired,
+  changeEmail: PropTypes.func.isRequired,
+  changePhone: PropTypes.func.isRequired,
+  changeClassNumber: PropTypes.func.isRequired,
+  delete: PropTypes.func.isRequired,
+  toggle: PropTypes.bool.isRequired,
+};

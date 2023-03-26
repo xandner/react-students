@@ -1,5 +1,6 @@
 import React from 'react';
 import './button.css'
+import PropTypes from "prop-types";
 
 const Button = (props) => {
     let classes = ['button']
@@ -23,4 +24,9 @@ const Button = (props) => {
         </button>
     )
 }
-export default Button;
+export default React.memo(Button);
+Button.prototype = {
+  children: PropTypes.string.isRequired,
+  clicked: PropTypes.func.isRequired,
+  btnType: PropTypes.string.isRequired,
+};
