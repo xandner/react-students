@@ -1,6 +1,8 @@
 import React from "react";
 import "./newStudent.css";
 import Button from "../../UI/button/button";
+import WithClass from "../../hoc/withClass";
+
 
 const NewStudent = (props) => {
   const { studentNewName, studentEmail, studentClass, studentPhone } = props;
@@ -12,7 +14,7 @@ const NewStudent = (props) => {
     addStudent,
   } = props;
   return (
-    <div className="newStudent">
+    <WithClass className="newStudent">
       <h1>اضافه کردن دانش‌آموز</h1>
       <label>نام و نام خانوادگی</label>
       <input
@@ -42,7 +44,7 @@ const NewStudent = (props) => {
       <Button btnType={"success"} clicked={addStudent}>
         اضافه کردن
       </Button>
-    </div>
+    </WithClass>
   );
 };
 export default NewStudent;
