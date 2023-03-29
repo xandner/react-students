@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import Student from "./student/student";
 import "./student/students.css";
 import PropTypes from "prop-types";
+import ErrorBoundray from "../errorBoundary/errorBoundray";
 
 const Students = (props) => {
   useEffect(() => {
     console.log("changed");
   }, [props.studentsList]);
-  let studentsList = props.studentsList.map((student, index) => {
-    return (
+  let studentsList = props.studentsList.map((student, index) => (
+    <ErrorBoundray>
       <Student
         key={index}
         id={student.id}
@@ -24,8 +25,8 @@ const Students = (props) => {
         }
         delete={props.delete}
       />
-    );
-  });
+    </ErrorBoundray>
+  ));
   if (props.toggle) {
     return <div className="student-section">{studentsList}</div>;
   }
