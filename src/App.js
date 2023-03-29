@@ -4,6 +4,7 @@ import Students from "./components/students/students";
 import Button from "./components/UI/button/button";
 import "./App.css";
 import NewStudent from "./components/students/new_student/newStudent";
+import Toolbar from "./container/header/toolbar/toolbar";
 
 function App() {
   const [students, setStudents] = useState([
@@ -145,6 +146,7 @@ function App() {
   };
   return (
     <div className="App">
+      <Toolbar />
       <NewStudent
         studentName={studentNewName}
         studentEmail={studentEmail}
