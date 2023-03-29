@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from "react";
 
-import Students from './components/students/students';
-import Button from './components/UI/button/button';
+import Students from "./components/students/students";
+import Button from "./components/UI/button/button";
 import "./App.css";
 import NewStudent from "./components/students/new_student/newStudent";
 
@@ -43,8 +43,10 @@ function App() {
   const [studentEmail, setStudentEmail] = useState("");
   const [studentClass, setStudentClass] = useState("");
   const [studentPhone, setStudentPhone] = useState("");
+  const inputEl = useRef(null);
   useEffect(() => {
     setArrayHolder(students);
+    inputEl.current.focus();
   }, []);
   const searchFilterFunction = (event) => {
     const searched = arrayHolder.filter((item) => {
@@ -138,6 +140,9 @@ function App() {
     setStudentEmail("");
     setStudentPhone("");
   };
+  const execEscrool = () => {
+    window.scrollTo(0, inputEl.current.offsetTop);
+  };
   return (
     <div className="App">
       <NewStudent
@@ -155,6 +160,7 @@ function App() {
         type={"text"}
         value={searchBarValue}
         onChange={searchFilterFunction}
+        ref={inputEl}
       ></input>
       <br />
       <Button btnType={"success"} clicked={toggleHandler}>
@@ -169,6 +175,10 @@ function App() {
         delete={deleteStudent}
         toggle={toggle}
       />
+      <Button btnType="danger" clicked={execEscrool}>
+        {" "}
+        برو بالا
+      </Button>
     </div>
   );
 }

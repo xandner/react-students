@@ -14,7 +14,7 @@ const NewStudent = (props) => {
     addStudent,
   } = props;
   return (
-    <WithClass className="newStudent">
+    <div className="newStudent">
       <h1>اضافه کردن دانش‌آموز</h1>
       <label>نام و نام خانوادگی</label>
       <input
@@ -44,7 +44,7 @@ const NewStudent = (props) => {
       <Button btnType={"success"} clicked={addStudent}>
         اضافه کردن
       </Button>
-    </WithClass>
+    </div>
   );
 };
 export default NewStudent;
