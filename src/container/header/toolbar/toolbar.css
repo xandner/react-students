@@ -14,3 +14,6 @@
     z-index: 90;
     direction: rtl;
 }
+.toolbar nav{
+    height: 100%;
+}
